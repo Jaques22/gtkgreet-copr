@@ -15,8 +15,8 @@ Source102:      %{greeter}-sway.conf
 Source103:      %{greeter}-wayfire.ini
 Source104:      %{greeter}-river-init
 # Fix -Wsign-compare error on 32-bit systems
-Patch0:         %{url}/commit/b8218e3.patch#/proto-fix-signed-ness-error.patch
-Patch1:         %{url}/commit/3471aaa.patch#/proto-use-uint32_t-offsets-and-message-lengths.patch
+#Patch0:         %{url}/commit/b8218e3.patch#/proto-fix-signed-ness-error.patch
+#Patch1:         %{url}/commit/3471aaa.patch#/proto-use-uint32_t-offsets-and-message-lengths.patch
 
 BuildRequires:  gcc
 BuildRequires:  meson >= 0.47

@@ -41,7 +41,7 @@ Recommends:     wayland-logout
 %prep
 #%autosetup -p1 -n %{greeter}-%{version}
 cd %{_builddir}
-git clone https://git.sr.ht/~kennylevinsen/gtkgreet.git ./ --recursive
+git clone %{URL}.git ./ --recursive
 %_fixperms .
 
 

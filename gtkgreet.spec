@@ -34,6 +34,7 @@ Suggests:       sway
 # Terminates the compositor once the greeter is done
 Recommends:     wayland-logout
 
+%_disable_source_fetch 1
 %description
 %{summary}.
 

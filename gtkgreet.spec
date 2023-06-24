@@ -7,13 +7,13 @@ Summary:        GTK based greeter for greetd
 
 License:        GPLv3
 URL:            https://git.sr.ht/~kennylevinsen/%{greeter}
-Source0:        %{url}/archive/%{version}.tar.gz#/%{greeter}-%{version}.tar.gz
+#Source0:        %{url}/archive/%{version}.tar.gz#/%{greeter}-%{version}.tar.gz
 # Desktop session file support - https://todo.sr.ht/~kennylevinsen/gtkgreet/8
-Source100:      %{greeter}-update-environments
-Source101:      %{greeter}.css
-Source102:      %{greeter}-sway.conf
-Source103:      %{greeter}-wayfire.ini
-Source104:      %{greeter}-river-init
+#Source100:      %{greeter}-update-environments
+#Source101:      %{greeter}.css
+#Source102:      %{greeter}-sway.conf
+#Source103:      %{greeter}-wayfire.ini
+#Source104:      %{greeter}-river-init
 # Fix -Wsign-compare error on 32-bit systems
 #Patch0:         %{url}/commit/b8218e3.patch#/proto-fix-signed-ness-error.patch
 #Patch1:         %{url}/commit/3471aaa.patch#/proto-use-uint32_t-offsets-and-message-lengths.patch
@@ -39,7 +39,10 @@ Recommends:     wayland-logout
 
 
 %prep
-%autosetup -p1 -n %{greeter}-%{version}
+#%autosetup -p1 -n %{greeter}-%{version}
+cd %{_builddir}
+git clone https://git.sr.ht/~kennylevinsen/gtkgreet.git ./ --recursive
+%_fixperms .
 
 
 %build
@@ -50,13 +53,13 @@ Recommends:     wayland-logout
 %install
 %meson_install
 
-install -D -m755 -vp %{SOURCE100} %{buildroot}%{_libexecdir}/gtkgreet-update-environments
-install -D -m644 -vp %{SOURCE101} %{buildroot}%{_sysconfdir}/gtkgreet/gtkgreet.css
-install -D -m644 -vp %{SOURCE102} %{buildroot}%{_sysconfdir}/gtkgreet/gtkgreet-sway.conf
-install -D -m644 -vp %{SOURCE103} %{buildroot}%{_sysconfdir}/gtkgreet/gtkgreet-wayfire.ini
+#install -D -m755 -vp %{SOURCE100} %{buildroot}%{_libexecdir}/gtkgreet-update-environments
+#install -D -m644 -vp %{SOURCE101} %{buildroot}%{_sysconfdir}/gtkgreet/gtkgreet.css
+#install -D -m644 -vp %{SOURCE102} %{buildroot}%{_sysconfdir}/gtkgreet/gtkgreet-sway.conf
+#install -D -m644 -vp %{SOURCE103} %{buildroot}%{_sysconfdir}/gtkgreet/gtkgreet-wayfire.ini
 # River config is an executable that talks with river via riverctl or wayland
 # protocol and starts the apps
-install -D -m755 -vp %{SOURCE104} %{buildroot}%{_sysconfdir}/gtkgreet/gtkgreet-river-init
+#install -D -m755 -vp %{SOURCE104} %{buildroot}%{_sysconfdir}/gtkgreet/gtkgreet-river-init
 
 mkdir -p %{buildroot}%{_sysconfdir}/greetd
 touch %{buildroot}%{_sysconfdir}/greetd/environments
